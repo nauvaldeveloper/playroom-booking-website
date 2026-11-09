@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Respawn Playroom — PS5 &amp; Nintendo Switch Playroom</title>
+  <meta name="description" content="Rental ruangan PS5 & Nintendo Switch private. Cek jadwal kosong, lihat ruangan & list game, lalu booking langsung via WhatsApp." />
+  <meta name="theme-color" content="#1c1240" />
+  <meta property="og:title" content="Respawn Playroom — PS5 & Nintendo Switch Playroom" />
+  <meta property="og:description" content="Cek jadwal kosong & booking ruangan langsung via WhatsApp." />
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <!-- ============ DEMO BANNER (tampil jika DEMO: true) ============ -->
+  <div class="demo-bar" id="demoBar" hidden>Website concept by Nauval Dev · data hanya contoh · <a href="#" id="demoBarLink" target="_blank" rel="noopener">Hubungi</a></div>
+
+  <!-- ============ NAVBAR ============ -->
+  <header class="nav" id="top">
+    <div class="container nav__inner">
+      <a href="#top" class="nav__brand" aria-label="Beranda">
+        <img src="assets/img/logo.svg" alt="" width="40" height="40" />
+        <span data-brand>Respawn Playroom</span>
+      </a>
+      <nav class="nav__links" id="navLinks">
+        <a href="#ruangan">Ruangan</a>
+        <a href="#harga">Harga</a>
+        <a href="#jadwal">Jadwal</a>
+        <a href="#cara">Cara Booking</a>
+        <a href="#lokasi">Lokasi</a>
+      </nav>
+      <a href="#jadwal" class="btn btn--pink btn--sm nav__cta">Booking</a>
+      <button class="nav__toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="deco deco--tri deco--tri1" aria-hidden="true"></div>
+      <div class="deco deco--tri deco--tri2" aria-hidden="true"></div>
+      <div class="deco deco--ring" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <img src="assets/img/logo.svg" alt="Logo" class="hero__logo" width="220" height="220" />
+        <p class="eyebrow">PS5 &amp; Nintendo Switch Playroom</p>
+        <h1 class="hero__title">Main bareng di <span class="glow-pink">ruangan</span> <span class="glow-cyan">private</span>.</h1>
+        <p class="hero__sub">Cek jadwal kosong secara langsung, pilih ruangan &amp; jamnya, lalu booking via WhatsApp</p>
+        <div class="hero__cta">
+          <a href="#jadwal" class="btn btn--pink">Cek Jadwal &amp; Booking</a>
+          <a href="#ruangan" class="btn btn--cyan">Lihat Ruangan</a>
+        </div>
+        <ul class="hero__stats">
+          <li><strong>13</strong><span>Ruangan</span></li>
+          <li><strong>PS5</strong><span>&amp; Switch</span></li>
+          <li><strong>Netflix</strong><span>di ruang VIP</span></li>
+          <li><strong id="heroHours">09–21</strong><span>Buka tiap hari</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ RUANGAN ============ -->
+    <section class="section" id="ruangan">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow">Pilih tempat mainmu</p>
+          <h2>Ruangan</h2>
+          <p class="section__lead">Tiap ruangan beda di list game-nya. Cari game favoritmu untuk tahu ruangan mana yang punya.</p>
+        </div>
+
+        <div class="toolbar">
+          <div class="tabs" id="roomTabs" role="tablist"></div>
+          <label class="search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input type="search" id="gameSearch" placeholder="Cari game, mis. Mario Kart" autocomplete="off" />
+          </label>
+        </div>
+
+        <div class="room-grid" id="roomGrid" aria-live="polite">
+          <div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HARGA ============ -->
+    <section class="section section--alt" id="harga">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow">Price list</p>
+          <h2>Harga</h2>
+          <p class="section__lead">Ambil paket 3 jam biar lebih hemat.</p>
+        </div>
+        <div class="price-grid" id="priceGrid"></div>
+      </div>
+    </section>
+
+    <!-- ============ JADWAL ============ -->
+    <section class="section" id="jadwal">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow">Live schedule</p>
+          <h2>Jadwal &amp; Booking</h2>
+          <p class="section__lead">Tap jam yang kosong untuk mulai booking. Tap jam lain di ruangan yang sama untuk memperpanjang durasi.</p>
+        </div>
+
+        <div class="date-strip" id="dateStrip" role="tablist" aria-label="Pilih tanggal"></div>
+
+        <div class="toolbar toolbar--schedule">
+          <div class="tabs" id="scheduleTabs" role="tablist"></div>
+          <div class="legend">
+            <span><i class="dot dot--free"></i>Kosong</span>
+            <span><i class="dot dot--booked"></i>Sudah dibooking</span>
+            <span><i class="dot dot--sel"></i>Pilihanmu</span>
+          </div>
+        </div>
+
+        <p class="sync" id="syncInfo"></p>
+
+        <div class="schedule" id="schedule" aria-live="polite">
+          <div class="skeleton-row"></div><div class="skeleton-row"></div><div class="skeleton-row"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CARA BOOKING ============ -->
+    <section class="section section--alt" id="cara">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow">Gampang kok</p>
+          <h2>Cara Booking</h2>
+        </div>
+        <ol class="steps">
+          <li><span class="steps__num">1</span><h3>Pilih jadwal</h3><p>Pilih tanggal, ruangan &amp; jam yang masih kosong di bagian Jadwal.</p></li>
+          <li><span class="steps__num">2</span><h3>Kirim via WhatsApp</h3><p>Isi nama, lalu tekan "Booking via WhatsApp". Pesan booking terisi otomatis.</p></li>
+          <li><span class="steps__num">3</span><h3>Transfer max 10 menit</h3><p>Admin mengirim form pembayaran. Lakukan <b>full payment</b> maksimal 10 menit setelah konfirmasi.</p></li>
+          <li><span class="steps__num">4</span><h3>Kirim bukti &amp; main!</h3><p>Kirim bukti transfer ke WA admin. Slot kamu langsung diamankan.</p></li>
+        </ol>
+        <div class="notice">
+          <strong>Penting:</strong> Slot baru diamankan setelah pembayaran diterima. Jika transfer lewat dari 10 menit setelah konfirmasi, slot diberikan ke yang membayar lebih dulu. Jika nama pengirim transfer berbeda, cantumkan nama &amp; tanggal main di catatan transfer.
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LOKASI ============ -->
+    <section class="section" id="lokasi">
+      <div class="container">
+        <div class="contact">
+          <div>
+            <p class="eyebrow">Mampir yuk</p>
+            <h2>Lokasi &amp; Kontak</h2>
+            <p class="section__lead">Buka setiap hari pukul <span id="contactHours">09.00–21.00</span>. Ada pertanyaan? Chat admin aja.</p>
+            <p class="contact__addr" id="contactAddr"></p>
+          </div>
+          <div class="contact__actions">
+            <a class="btn btn--cyan" id="mapsLink" target="_blank" rel="noopener">Buka Google Maps</a>
+            <a class="btn btn--pink" id="waLink" target="_blank" rel="noopener">Chat WhatsApp</a>
+            <a class="btn btn--ghost" id="igLink" target="_blank" rel="noopener">Instagram</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© <span id="year"></span> <span data-brand>Respawn Playroom</span></span>
+      <span id="footerContact"></span>
+    </div>
+  </footer>
+
+  <!-- ============ BOOKING PANEL (bottom sheet) ============ -->
+  <aside class="sheet" id="sheet" aria-hidden="true" aria-labelledby="sheetTitle">
+    <div class="container sheet__inner">
+      <button class="sheet__close" id="sheetClose" aria-label="Batalkan pilihan">×</button>
+      <div class="sheet__summary">
+        <p class="sheet__label">Booking kamu</p>
+        <h3 id="sheetTitle">—</h3>
+        <p id="sheetWhen">—</p>
+      </div>
+      <div class="sheet__controls">
+        <div class="stepper" aria-label="Durasi">
+          <button id="durMinus" aria-label="Kurangi durasi">−</button>
+          <span><b id="durValue">1</b> jam</span>
+          <button id="durPlus" aria-label="Tambah durasi">+</button>
+        </div>
+        <input type="text" id="custName" placeholder="Nama kamu" autocomplete="name" maxlength="40" />
+      </div>
+      <div class="sheet__total">
+        <div>
+          <p class="sheet__label">Total</p>
+          <p class="sheet__price"><span id="totalPrice">Rp0</span> <s id="totalStrike"></s></p>
+          <p class="sheet__save" id="totalSave"></p>
+        </div>
+        <button class="btn btn--wa" id="waBook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.6 2.1 1.1 1 2 1.3 2.3 1.4.3.2.5.1.6 0l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.6-.1 1.2Z"/></svg>
+          Booking via WhatsApp
+        </button>
+      </div>
+      <p class="sheet__hint" id="sheetHint"></p>
+    </div>
+  </aside>
+
+  <!-- ============ ROOM DETAIL MODAL ============ -->
+  <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__box">
+      <button class="modal__close" data-close aria-label="Tutup">×</button>
+      <div class="modal__body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
